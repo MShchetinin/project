@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+    <style type="text/css">
+    	div {
+    		width: 200px;
+    		height: 200px;
+    		overflow: hidden;
+    	}
+    	ul {
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		position: relative;
+
+    	}
+    	li {
+ 			width: 200px;
+ 			height: 200px;
+ 			float: left;
+ 			transition: background 2s ease;
+    	}
+    	.first {
+    		background: url(200x200-B6t.png) no-repeat;
+    	}
+    	.second {
+    		background: url(FEJMEETFGHSZ9J9.MEDIUM.gif) no-repeat;
+    	}
+    	.third {
+    		background: url(mortal_kombat_logo-e1302553140586.png) no-repeat;
+    	}
+    	button {
+            float: left;
+    		width: 80px;
+    		height: 30px;
+    		margin: 10px;
+            display: inline;
+    	}
+    </style>
+  
+
+</head>
+<body>
+    <div>
+    	<ul>
+    		<li class="first"></li>
+    		<li class="second"></li>
+    		<li class="third"></li>
+    	</ul>
+    </div>
+    <div id="buttons">
+    	<button data-id="prev">Prev</button>
+    	<button data-id="next">Next</button>
+    	
+    </div>
+
+      <script type="text/javascript">
+
+ 		var ul = document.querySelector('ul'),
+ 		    width = ul.firstElementChild.clientWidth;
+ 		    count = ul.children.length,
+ 		    buttons = document.querySelector('#buttons');
+
+ 			ulWidth = (count+1)*width;
+ 			ul.style.width = ulWidth + 'px'; 
+
+ 			buttons.addEventListener('click', sliderMove);
+
+ 			function sliderMove (e) {
+ 				var target = e && e.target || e.srcElement,
+ 				    attr = target.getAttribute('data-id');
+ 				if (!attr) return;
+ 				if (attr == 'next') {
+ 					var firstEl = ul.firstElementChild,
+ 				    clone = firstEl.cloneNode();
+	 				ul.appendChild(clone);
+	 				ul.style.right = - width + 'px';
+	 				ul.removeChild(firstEl);
+	 				ul.style.right = 0;
+ 				}else{
+					var lastEl = ul.lastElementChild,
+					item = document.querySelector('li'),
+ 				    clone = lastEl.cloneNode();
+	 				ul.insertBefore(clone, item);
+	 				ul.style.right = - width + 'px';
+	 				ul.removeChild(lastEl);
+	 				ul.style.right = 0;
+				}
+ 			};
+ 	
+
+    </script>
+</body>
+</html>
